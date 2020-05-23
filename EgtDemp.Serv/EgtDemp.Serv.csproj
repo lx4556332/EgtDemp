@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\EgtDemp.Api\bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EgtDemp.IRepo\EgtDemp.IRepo.csproj" />
+    <ProjectReference Include="..\EgtDemp.IServ\EgtDemp.IServ.csproj" />
+  </ItemGroup>
+
+</Project>
