@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using EgtDemp.IRepo;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace EgtDemp.Api.Controllers
 {
@@ -19,18 +21,24 @@ namespace EgtDemp.Api.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IDemoRepo _demoRepo;
+        private IConfiguration _configuration { get; set; }
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger,IDemoRepo demoRepo)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,IDemoRepo demoRepo, IConfiguration configuration)
         {
             _logger = logger;
             _demoRepo = demoRepo;
+            this._configuration = configuration;
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var demos = _demoRepo.GetDemos();
 
+            var demos = _demoRepo.GetDemos();
+            Console.WriteLine(JsonConvert.SerializeObject(demos));
+            Console.WriteLine($"config:{_configuration["consul_config"]}");
+            //var aa= _configuration.GetValue<string>("MySettings:ApplicationName");
+            //.GetSection("Data").GetSection("ConnectionString").Value;
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
