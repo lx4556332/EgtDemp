@@ -16,5 +16,11 @@
     <ProjectReference Include="..\EgtDemp.IServ\EgtDemp.IServ.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 
 </Project>
